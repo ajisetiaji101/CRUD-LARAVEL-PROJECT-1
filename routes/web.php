@@ -17,20 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [HomeController::class, 'login']);
 
-Route::get('/register', [HomeController::class, 'register']);
-Route::post('/register', [HomeController::class, 'store']);
+Route::get('/register', [HomeController::class, 'register'])->middleware('guest');
+Route::post('/register', [HomeController::class, 'store'])->middleware('guest');
 
-Route::get('/login', [AdminController::class, 'login']);
+Route::get('/login', [AdminController::class, 'login'])->middleware('guest');
 Route::post('/login', [AdminController::class, 'authenticate'])->name('login')->middleware('guest');
 Route::group(['middleware' => ['auth','ceklevel:admin,employee']], function() {
     Route::get('/dashboard', [AdminController::class, 'index']);
     Route::get('/logout', [AdminController::class, 'logout']);
     Route::get('/info', [AdminController::class, 'info']);
-    Route::get('/data', [AdminController::class, 'data']);
-    Route::get('/data/{id}', [AdminController::class, 'delete']);
     Route::get('/data/{id}/edit', [AdminController::class, 'edit']);
     Route::put('/data/edit/{id}', [AdminController::class, 'update']);
 });
+Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
+    Route::get('/data', [AdminController::class, 'data']);
+    Route::get('/data/{id}', [AdminController::class, 'delete']);
+});
+
 

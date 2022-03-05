@@ -41,12 +41,24 @@
 			<div class="row align-items-center text-center">
 				<div class="col-md-12">
 					<div class="card-body">
+						@if(session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          {{ session('success') }}
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                          @endif
                         @if(session()->has('loginError'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                           {{ session('loginError') }}
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                           </div>
                           @endif
+						  @if(session()->has('error'))
+						  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+							{{ session('error') }}
+							  <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+							</div>
+							@endif
 						<h4 class="mb-3 f-w-400">LOGIN</h4>
                         <form action="login" method="post">
 							@csrf
@@ -69,6 +81,7 @@
                                 @enderror
                             </div>
                             <button class="btn btn-block btn-primary mb-4">Signin</button>
+							<p class="mb-0 text-muted">Don’t have an account? <a href="/register" class="f-w-400">Signup</a></p>
                         </form>
 					</div>
 				</div>

@@ -43,7 +43,7 @@
 	<!-- [ Mobile header ] start -->
 	<div class="pc-mob-header pc-header">
 		<div class="pcm-logo">
-			<img src="admin/images/logo.svg" alt="" class="logo logo-lg">
+			<h3 class="text-white">DIAN GRAHA</h3>
 		</div>
 		<div class="pcm-toolbar">
 			<a href="#!" class="pc-head-link" id="mobile-collapse">
@@ -52,9 +52,6 @@
 						<div class="hamburger-inner"></div>
 					</div>
 				</div>
-			</a>
-			<a href="#!" class="pc-head-link" id="headerdrp-collapse">
-				<i data-feather="align-right"></i>
 			</a>
 			<a href="#!" class="pc-head-link" id="header-collapse">
 				<i data-feather="more-vertical"></i>

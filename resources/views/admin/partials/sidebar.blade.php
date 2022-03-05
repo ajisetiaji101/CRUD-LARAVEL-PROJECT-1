@@ -2,9 +2,7 @@
     <div class="navbar-wrapper">
         <div class="m-header">
             <a href="index.html" class="b-brand">
-                <!-- ========   change your logo hear   ============ -->
-                <img src="{{ asset('admin/images/logo.svg') }}" alt="" class="logo logo-lg">
-                <img src="{{ asset('admin/images/logo-sm.svg') }}" alt="" class="logo logo-sm">
+                <h3 class="text-white">DIAN GRAHA</h3>
             </a>
         </div>
         <div class="navbar-content">

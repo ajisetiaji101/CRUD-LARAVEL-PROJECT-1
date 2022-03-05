@@ -20,9 +20,15 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand me-auto" href="#">DIAN GRAHA</a>
+                @auth
                 <div class="d-flex">
-                    <a href="/login" class="btn btn-success" type="submit">LOGIN</a>
+                  <a href="/dashboard" class="btn btn-success" type="submit">DASHBOARD</a>
                 </div>
+                @else
+                <div class="d-flex">
+                  <a href="/login" class="btn btn-success" type="submit">LOGIN</a>
+               </div>
+                @endauth
               </div>
             </div>
           </nav>

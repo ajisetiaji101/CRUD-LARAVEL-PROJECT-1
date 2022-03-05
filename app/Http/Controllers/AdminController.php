@@ -93,7 +93,7 @@ class AdminController extends Controller
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        Client::where('id', $id)->update($validatedData);
+        User::where('id', $id)->update($validatedData);
 
         return redirect('dashboard')->with('success', 'Update data Successfull!');
     }

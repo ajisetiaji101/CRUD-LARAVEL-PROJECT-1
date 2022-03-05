@@ -90,6 +90,7 @@
             <input type="number" class="form-control" id="mobilenumber" name="mobilenumber" @error('mobilenumber') is-invalid @enderror value="{{ old('mobilenumber') }}" required>
           </div>
         </div>
+        <input type="hidden" name="level" value="employee" />
         <div class="mb-3 row">
           <label for="email" class="col-sm-4 col-form-label">Email</label>
           <div class="col-sm-8">
@@ -97,9 +98,9 @@
           </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Register Now</button>
         <button type="reset" class="btn btn-warning">Reset</button>
-        <a class="btn btn-danger" href="{{ url('/') }}">Cancel</a>
+        <a class="btn btn-danger" href="{{ url('/login') }}">Cancel</a>
       </form>
     </div>
   </div> 

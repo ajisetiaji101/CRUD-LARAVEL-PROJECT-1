@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,11 +36,11 @@ class HomeController extends Controller
             'corresponaddress' => 'required',
             'mobilenumber' => 'required',
             'maritalstatus' => 'required',
-            'level' => 'employee'
+            'level' => 'required'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        Client::create($validatedData);
+        User::create($validatedData);
 
         return redirect('/login')->with('success', 'Register Successfull!');
     }
