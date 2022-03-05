@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ClientController extends Controller
+class HomeController extends Controller
 {
     //
     public function index(){
-        return view("index");
+        return view("home");
     }
+
+    public function login(){
+        return view("login");
+    }
+
+    public function register(){
+        return view("register");
+    }
+
+
     public function store(Request $request){
         $validatedData = $request->validate([
             'firstname' => 'required|max:255',
@@ -25,11 +36,27 @@ class ClientController extends Controller
             'corresponaddress' => 'required',
             'mobilenumber' => 'required',
             'maritalstatus' => 'required',
+            'level' => 'employee'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
 
         Client::create($validatedData);
 
-        return redirect('/')->with('success', 'Registration Successfull!');
+        return redirect('/login')->with('success', 'Register Successfull!');
+    }
+
+    public function authenticate(Request $request){
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required',
+        ]);
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->with('loginError','Login Failed!');
     }
 }
