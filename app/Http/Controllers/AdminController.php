@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -34,7 +35,7 @@ class AdminController extends Controller
 
 
     public function data(){
-        $datas = User::all();
+        $datas = DB::table('users')->get()->where('level','employee');
         return view("admin.data",[
             "datas" => $datas
         ]);
@@ -63,9 +64,26 @@ class AdminController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit(Request $request, $id){
 
         $datas = User::all();
+        if(Auth()->user()->id == 1){
+            $result = $datas->where("id",$id);
+
+            return view("admin.edit",[
+                "result" => $result
+            ]);
+        }
+
+        if(Auth()->user()->id != $id){
+            Auth::logout();
+
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+    
+            return redirect('login')->with('error', 'Anda Tidak Memiliki Access');
+        }
 
         $result = $datas->where("id",$id);
 
@@ -89,11 +107,16 @@ class AdminController extends Controller
             'corresponaddress' => 'required',
             'mobilenumber' => 'required',
             'maritalstatus' => 'required',
-            'level' => 'employee'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        User::where('id', $id)->update($validatedData);
+        $result = collect($validatedData);
+
+        $result->put('level','employee');
+
+        $data = $result->toArray();
+
+        User::where('id', $id)->update($data);
 
         return redirect('dashboard')->with('success', 'Update data Successfull!');
     }

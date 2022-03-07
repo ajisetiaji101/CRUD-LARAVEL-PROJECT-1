@@ -36,11 +36,16 @@ class HomeController extends Controller
             'corresponaddress' => 'required',
             'mobilenumber' => 'required',
             'maritalstatus' => 'required',
-            'level' => 'required'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        User::create($validatedData);
+        $result = collect($validatedData);
+
+        $result->put('level','employee');
+
+        $data = $result->toArray();
+
+        User::create($data);
 
         return redirect('/login')->with('success', 'Register Successfull!');
     }

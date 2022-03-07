@@ -90,7 +90,7 @@
             <input type="number" class="form-control" id="mobilenumber" name="mobilenumber" @error('mobilenumber') is-invalid @enderror value="{{ old('mobilenumber') }}" required>
           </div>
         </div>
-        <input type="hidden" name="level" value="employee" />
+        {{-- <input type="hidden" name="level" value="employee" /> --}}
         <div class="mb-3 row">
           <label for="email" class="col-sm-4 col-form-label">Email</label>
           <div class="col-sm-8">
