@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>DashboardKit Bootstrap 5 Admin Template</title>
+	<title>LOGIN | PT. BANK SUMBEL BABEL</title>
 	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 11]>
@@ -20,7 +20,7 @@
 
 
 	<!-- Favicon icon -->
-	<link rel="icon" href="{{ asset('admin/images/favicon.svg') }}" type="image/x-icon">
+	<link rel="icon" href="{{ asset('assets/img/logo.png') }}"type="image/x-icon">
 
 	<!-- font css -->
 	<link rel="stylesheet" href="{{ asset('admin/fonts/feather.css') }}">
@@ -35,56 +35,58 @@
 <body>
 
 <!-- [ auth-signin ] start -->
-<div class="auth-wrapper" style="background-image: url('{{ asset('assets/img/background3.jpg') }}');  background-repeat: no-repeat; background-size:cover">
-	<div class="auth-content">
-		<div class="card">
-			<div class="row align-items-center text-center">
-				<div class="col-md-12">
-					<div class="card-body">
-						@if(session()->has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                          {{ session('success') }}
-                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                          </div>
-                          @endif
-                        @if(session()->has('loginError'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          {{ session('loginError') }}
-                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                          </div>
-                          @endif
-						  @if(session()->has('error'))
-						  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-							{{ session('error') }}
-							  <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-							</div>
-							@endif
-						<h4 class="mb-3 f-w-400">LOGIN</h4>
-                        <form action="login" method="post">
-							@csrf
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><i data-feather="mail"></i></span>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email address">
-                                @error('email')
-                                <div class="invalid-feedback">
-                                  {{ $message }}
-                                </div>
-                              @enderror
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text"><i data-feather="lock"></i></span>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-                                @error('password')
-                                <div class="invalid-feedback">
-                                  {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <button class="btn btn-block btn-primary mb-4">Signin</button>
-							<p class="mb-0 text-muted">Don’t have an account? <a href="/register" class="f-w-400">Signup</a></p>
-                        </form>
+<div class="container"
+style="
+/* background-image: url('{{ asset('assets/img/background3.jpg') }}');   */
+background-repeat: no-repeat; background-size:cover">
+	<div class="row">
+		<div class="col-sm-8">
+			Tes1
+		</div>
+		<div class="col-sm-4 align-self-center">
+			<div class="card">
+				@if(session()->has('success'))
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  {{ session('success') }}
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+				  </div>
+				  @endif
+				@if(session()->has('loginError'))
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  {{ session('loginError') }}
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+				  </div>
+				  @endif
+				  @if(session()->has('error'))
+				  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+					{{ session('error') }}
+					  <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
 					</div>
-				</div>
+					@endif
+				<h4 class="mb-3 f-w-400">LOGIN</h4>
+				<form action="login" method="post">
+					@csrf
+					<div class="input-group mb-3">
+						<span class="input-group-text"><i data-feather="mail"></i></span>
+						<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email address">
+						@error('email')
+						<div class="invalid-feedback">
+						  {{ $message }}
+						</div>
+					  @enderror
+					</div>
+					<div class="input-group mb-4">
+						<span class="input-group-text"><i data-feather="lock"></i></span>
+						<input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+						@error('password')
+						<div class="invalid-feedback">
+						  {{ $message }}
+						</div>
+						@enderror
+					</div>
+					<button class="btn btn-block btn-primary mb-4 text-light">Signin</button>
+				</form>
+
 			</div>
 		</div>
 	</div>

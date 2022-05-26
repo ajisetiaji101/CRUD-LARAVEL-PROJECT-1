@@ -9,7 +9,10 @@
                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
               </div>
               @endif
-              <h2>Data <b>Karyawan</b></h2>
+              <div class="row">
+                  <h2 class="col">Data <b>Karyawan</b></h2>
+                  <a href="#" class="btn btn-primary col-md-2" data-toggle="modal" data-target="#exampleModalLong">Add Data</a>
+              </div>
         </div>
         <div class="card-body table-border-style">
             <div class="table-responsive">
@@ -58,4 +61,5 @@
         </div>
     </div>
 </div>
+@include("admin.partials.modalkaryawan");
 @endsection

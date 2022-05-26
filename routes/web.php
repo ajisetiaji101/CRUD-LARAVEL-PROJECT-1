@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/register', [HomeController::class, 'register'])->middleware('guest');
-Route::post('/register', [HomeController::class, 'store'])->middleware('guest');
+Route::post('/register', [HomeController::class, 'store']);
 
 Route::get('/login', [AdminController::class, 'login'])->middleware('guest');
 Route::post('/login', [AdminController::class, 'authenticate'])->name('login')->middleware('guest');

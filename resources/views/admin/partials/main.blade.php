@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>DashboardKit Bootstrap 5 Admin Template</title>
+    <title>PT. DIAN GRAHA ELEKTRIKA</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -20,7 +20,7 @@
 
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('admin/images/favicon.svg') }}"type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}"type="image/x-icon">
 
     <!-- font css -->
     <link rel="stylesheet" href="{{ asset('admin/fonts/feather.css') }}">
@@ -43,7 +43,7 @@
 	<!-- [ Mobile header ] start -->
 	<div class="pc-mob-header pc-header">
 		<div class="pcm-logo">
-			<h3 class="text-white">DIAN GRAHA</h3>
+			<h3 class="text-white">PT. DIAN GRAHA ELEKTRIKA</h3>
 		</div>
 		<div class="pcm-toolbar">
 			<a href="#!" class="pc-head-link" id="mobile-collapse">

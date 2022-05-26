@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}"type="image/x-icon">
 
-    <title>DATA KARYAWAN</title>
+
+    <title>REGISTER | PT. DIAN GRAHA ELEKTRIKA</title>
   </head>
   <body>
         @yield('container')

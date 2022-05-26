@@ -23,31 +23,77 @@ class HomeController extends Controller
 
 
     public function store(Request $request){
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
-            'dob' => 'required',
-            'birth' => 'required|max:255',
-            'sex' => 'required',
-            'nationality' => 'required',
-            'permanentaddress' => 'required',
-            'religion' => 'required',
-            'corresponaddress' => 'required',
-            'mobilenumber' => 'required',
-            'maritalstatus' => 'required',
-        ]);
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        if(Auth()->user()->level == "admin"){
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+                'level' => 'required',
+            ]);
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $result = collect($validatedData);
+            User::create($validatedData);
+            return redirect('/data')->with('success', 'add data Successfull!');
+        }else{
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+            ]);
 
-        $result->put('level','employee');
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $data = $result->toArray();
+            $result = collect($validatedData);
 
-        User::create($data);
+            $result->put('level','employee');
 
-        return redirect('/login')->with('success', 'Register Successfull!');
+            $data = $result->toArray();
+
+            User::create($data);
+            return redirect('/login')->with('success', 'Register Successfull!');
+        }
+        // $validatedData = $request->validate([
+        //     'firstname' => 'required|max:255',
+        //     'email' => 'required|email:dns|unique:users',
+        //     'password' => 'required|min:5|max:255',
+        //     'dob' => 'required',
+        //     'birth' => 'required|max:255',
+        //     'sex' => 'required',
+        //     'nationality' => 'required',
+        //     'permanentaddress' => 'required',
+        //     'religion' => 'required',
+        //     'corresponaddress' => 'required',
+        //     'mobilenumber' => 'required',
+        //     'maritalstatus' => 'required',
+        // ]);
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+
+        // $result = collect($validatedData);
+
+        // $result->put('level','employee');
+
+        // $data = $result->toArray();
+
+        // User::create($data);
+
     }
 
     public function authenticate(Request $request){

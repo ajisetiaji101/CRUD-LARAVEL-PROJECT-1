@@ -6,7 +6,7 @@
       <h1 class="mb-3">UPDATE DATA KARYAWAN</h1>
       <hr>
       @foreach ($result as $data)        
-      <form action="/edit/{{ $data->id }}" method="POST">
+      <form action="{{ url('data/edit/'.$data->id) }}" method="POST">
         @method('put')
         @csrf
         <div class="mb-3 row">
@@ -92,6 +92,17 @@
             <input type="email" class="form-control" id="email" name="email" @error('email') is-invalid @enderror value="{{ old('email', $data->email) }}" required>
           </div>
         </div>
+        @if (Auth()->user()->level == 'admin')            
+        <div class="mb-3 row">
+          <label for="level" class="col-sm-4 col-form-label">Level</label>
+          <div class="col-sm-8">
+            <select class="form-select" aria-label="Default select example" id="level" name="level" @error('level') is-invalid @enderror value="{{ old('level', $data->level) }}">
+              <option value="employee">Employee</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </div>
+        @endif
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
         <a class="btn btn-danger" href="{{ url('dashboard') }}">Cancel</a>

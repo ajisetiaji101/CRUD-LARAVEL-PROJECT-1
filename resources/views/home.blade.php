@@ -8,25 +8,27 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <link rel="icon" href="{{ asset('assets/img/logo.png') }}"type="image/x-icon">
+
+    <title>PT. BANK SUMSEL BABEL</title>
   </head>
   <body>
     {{-- Navbar --}}
     <div style="background-image: url('{{ asset('assets/img/background3.jpg') }}');  background-repeat: no-repeat; background-size:cover" class="overlay">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark b g-transparent fixed-top p-3">
             <div class="container">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand me-auto" href="#">DIAN GRAHA</a>
+                <a class="navbar-brand me-auto" href="#"><img src="{{ asset('assets/img/logosumselbabel.png') }}" width="160px"></a>
                 @auth
                 <div class="d-flex">
-                  <a href="/dashboard" class="btn btn-success" type="submit">DASHBOARD</a>
+                  <a href="dashboard" class="btn btn-primary" type="submit">DASHBOARD</a>
                 </div>
                 @else
                 <div class="d-flex">
-                  <a href="/login" class="btn btn-success" type="submit">LOGIN</a>
+                  <a href="login" class="btn btn-primary" type="submit">LOGIN</a>
                </div>
                 @endauth
               </div>
@@ -35,8 +37,8 @@
           <div class="container">
               <div class="row min-vh-100 text-center align-items-center">
                   <div class="col">
-                      <h1 class="text-white">SISTEM INFORMASI KARYAWAN</h1>
-                      <h1 class="text-white">DIAN GRAHA</h1>
+                      <h1 class="text-primary fw-bolder">SISTEM INFORMASI DATA NASABAH</h1>
+                      <h1 class="text-primary fw-bolder lh-base">PT. BANK SUMSEL BABEL</h1>
                   </div>
               </div>
           </div>

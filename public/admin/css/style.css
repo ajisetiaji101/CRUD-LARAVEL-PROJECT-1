@@ -14,7 +14,7 @@ File: style.css
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-    --bs-blue: #7267EF;
+    --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
     --bs-pink: #e83e8c;
@@ -27,7 +27,7 @@ File: style.css
     --bs-white: #ffffff;
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
-    --bs-primary: #7267EF;
+    --bs-primary: #0d6efd;
     --bs-secondary: #6c757d;
     --bs-success: #17C666;
     --bs-info: #3ec9d6;
@@ -3055,42 +3055,43 @@ textarea.form-control-lg {
 }
 
 .btn-primary {
-    color: #ffffff;
-    background-color: #7267EF;
-    border-color: #7267EF;
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
-
 .btn-primary:hover {
-    color: #ffffff;
-    background-color: #6158cb;
-    border-color: #5b52bf;
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
-
-.btn-check:focus + .btn-primary, .btn-primary:focus {
-    color: #ffffff;
-    background-color: #6158cb;
-    border-color: #5b52bf;
-    box-shadow: 0 0 0 0.2rem rgba(135, 126, 241, 0.5);
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
 }
-
+.btn-check:active + .btn-primary,
 .btn-check:checked + .btn-primary,
-  .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
-  .show > .btn-primary.dropdown-toggle {
-    color: #ffffff;
-    background-color: #5b52bf;
-    border-color: #564db3;
+.btn-primary.active,
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0a58ca;
+    border-color: #0a53be;
 }
-
+.btn-check:active + .btn-primary:focus,
 .btn-check:checked + .btn-primary:focus,
-    .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus,
-    .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(135, 126, 241, 0.5);
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
 }
-
-.btn-primary:disabled, .btn-primary.disabled {
-    color: #ffffff;
-    background-color: #7267EF;
-    border-color: #7267EF;
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 
 .btn-secondary {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -63,43 +64,78 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         //
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
-            'dob' => 'required',
-            'birth' => 'required|max:255',
-            'sex' => 'required',
-            'nationality' => 'required',
-            'permanentaddress' => 'required',
-            'religion' => 'required',
-            'corresponaddress' => 'required',
-            'mobilenumber' => 'required',
-            'maritalstatus' => 'required',
-        ]);
+        if(Auth()->user()->level == 'admin'){
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns|unique:users',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+                'level' => 'required'
+            ]);
+    
+            if(!$validatedData){
+                return response()->json([
+                    'message' => 'Data is False',
+                    'status' => '401',
+                ],401);
+            }
+    
+            $validatedData['password'] = bcrypt($validatedData['password']);
+    
+            User::create($validatedData);
 
-        if(!$validatedData){
             return response()->json([
-                'message' => 'Data is False',
-                'status' => '401',
-            ],401);
-        }
+                'message' => 'Data Berhasil Ditambahkan',
+                'status'=> 200,
+                'data' => $validatedData
+            ],200);
+        }else{
+                $validatedData = $request->validate([
+                    'firstname' => 'required|max:255',
+                    'email' => 'required|email:dns|unique:users',
+                    'password' => 'required|min:5|max:255',
+                    'dob' => 'required',
+                    'birth' => 'required|max:255',
+                    'sex' => 'required',
+                    'nationality' => 'required',
+                    'permanentaddress' => 'required',
+                    'religion' => 'required',
+                    'corresponaddress' => 'required',
+                    'mobilenumber' => 'required',
+                    'maritalstatus' => 'required',
+                ]);
+        
+                if(!$validatedData){
+                    return response()->json([
+                        'message' => 'Data is False',
+                        'status' => '401',
+                    ],401);
+                }
+        
+                $validatedData['password'] = bcrypt($validatedData['password']);
+        
+                $result = collect($validatedData);
+        
+                $result->put('level','employee');
+        
+                $data = $result->toArray();
+        
+                User::create($data);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
-
-        $result = collect($validatedData);
-
-        $result->put('level','employee');
-
-        $data = $result->toArray();
-
-        User::create($data);
-
-        return response()->json([
-            'message' => 'Data Berhasil Ditambahkan',
-            'status'=> 200,
-            'data' => $data
-        ],200);
+                return response()->json([
+                    'message' => 'Data Berhasil Ditambahkan',
+                    'status'=> 200,
+                    'data' => $data
+                ],200);
+            }
     }
 
     /**
@@ -145,20 +181,52 @@ class AuthController extends Controller
             ],401);
         }
 
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:255',
-            'email' => 'required|email:dns',
-            'password' => 'required|min:5|max:255',
-            'dob' => 'required',
-            'birth' => 'required|max:255',
-            'sex' => 'required',
-            'nationality' => 'required',
-            'permanentaddress' => 'required',
-            'religion' => 'required',
-            'corresponaddress' => 'required',
-            'mobilenumber' => 'required',
-            'maritalstatus' => 'required',
-        ]);
+        if(Auth()->user()->level == "admin"){
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+                'level' => 'required',
+            ]);
+            $validatedData['password'] = bcrypt($validatedData['password']);
+
+            $datas->update($validatedData);
+        }else{
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+            ]);
+
+            $validatedData['password'] = bcrypt($validatedData['password']);
+
+            $result = collect($validatedData);
+
+            $result->put('level','employee');
+
+            $data = $result->toArray();
+
+            $datas->update($data);
+        }
+
 
         if(!$validatedData){
             return response()->json([
@@ -166,16 +234,6 @@ class AuthController extends Controller
                 'status' => 500,
             ],501);
         }
-
-        $validatedData['password'] = bcrypt($validatedData['password']);
-
-        $result = collect($validatedData);
-
-        $result->put('level','employee');
-
-        $data = $result->toArray();
-
-        $datas->update($data);
 
         return response()->json([
             'message' => 'success',

@@ -6,12 +6,12 @@
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/tambah" method="POST">
+                <form action="register" method="POST">
                     @csrf
                     <div class="mb-3 row">
                       <label for="firstname" class="col-sm-4 col-form-label">Firstname</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="firstname" name="firstname" @error('firtname') is-invalid @enderror value="{{ old('firtname') }}" required>
+                        <input type="text" class="form-control" id="firstname" name="firstname" @error('firstname') is-invalid @enderror value="{{ old('firstname') }}" required>
                       </div>
                     </div>
                     <div class="mb-3 row">
@@ -91,9 +91,18 @@
                         <input type="email" class="form-control" id="email" name="email" @error('email') is-invalid @enderror value="{{ old('email') }}" required>
                       </div>
                     </div>
+                    <div class="mb-3 row">
+                      <label for="level" class="col-sm-4 col-form-label">Level</label>
+                      <div class="col-sm-8">
+                        <select class="form-select" aria-label="Default select example" id="level" name="level" @error('level') is-invalid @enderror value="{{ old('level', $data->level) }}">
+                          <option value="employee">Employee</option>
+                          <option value="admin">Admin</option>
+                        </select>
+                      </div>
+                    </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn  btn-primary">Save changes</button>
+                <button type="submit" class="btn  btn-primary">Save</button>
                 <button type="reset" class="btn btn-warning">Reset</button>
                 <button type="button" class="btn  btn-secondary" data-dismiss="modal">Close</button>
             </div>

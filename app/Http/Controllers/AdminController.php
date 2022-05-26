@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,32 +93,55 @@ class AdminController extends Controller
     }
 
     public function update(Request $request, $id){
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
-            'dob' => 'required',
-            'birth' => 'required|max:255',
-            'sex' => 'required',
-            'nationality' => 'required',
-            'permanentaddress' => 'required',
-            'religion' => 'required',
-            'corresponaddress' => 'required',
-            'mobilenumber' => 'required',
-            'maritalstatus' => 'required',
-        ]);
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        if(Auth()->user()->level == "admin"){
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+                'level' => 'required',
+            ]);
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $result = collect($validatedData);
+            User::where('id', $id)->update($validatedData);
+        }else{
+            $validatedData = $request->validate([
+                'firstname' => 'required|max:255',
+                'email' => 'required|email:dns',
+                'password' => 'required|min:5|max:255',
+                'dob' => 'required',
+                'birth' => 'required|max:255',
+                'sex' => 'required',
+                'nationality' => 'required',
+                'permanentaddress' => 'required',
+                'religion' => 'required',
+                'corresponaddress' => 'required',
+                'mobilenumber' => 'required',
+                'maritalstatus' => 'required',
+            ]);
 
-        $result->put('level','employee');
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $data = $result->toArray();
+            $result = collect($validatedData);
 
-        User::where('id', $id)->update($data);
+            $result->put('level','employee');
+
+            $data = $result->toArray();
+
+            User::where('id', $id)->update($data);
+        }
 
         return redirect('dashboard')->with('success', 'Update data Successfull!');
     }
+    
     public function delete($id){
         $datas = User::where("id", $id);
 

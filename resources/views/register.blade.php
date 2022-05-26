@@ -11,7 +11,7 @@
         @endif
       <h1 class="mb-3">REGISTER</h1>
       <hr>
-      <form action="/register" method="POST">
+      <form action="register" method="POST">
         @csrf
         <div class="mb-3 row">
           <label for="firstname" class="col-sm-4 col-form-label">Firstname</label>
@@ -100,7 +100,7 @@
         <br>
         <button type="submit" class="btn btn-primary">Register Now</button>
         <button type="reset" class="btn btn-warning">Reset</button>
-        <a class="btn btn-danger" href="{{ url('/login') }}">Cancel</a>
+        <a class="btn btn-danger" href="{{ url('login') }}">Cancel</a>
       </form>
     </div>
   </div> 
